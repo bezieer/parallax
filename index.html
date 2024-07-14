@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>パララックスエフェクト</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow-x: hidden;
+            font-family: Arial, sans-serif;
+        }
+
+        .parallax-container {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .parallax-layer {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50%;
+            height: 50%;
+            background-size: cover;
+            background-position: center;
+        }
+
+        #layer1 {
+            background-image: url('a02.png');
+            z-index: 1;
+        }
+
+        #layer2 {
+            background-image: url('a01.png');
+            z-index: 2;
+        }
+
+        .content {
+            position: relative;
+            background-color: white;
+            padding: 20px;
+            height: 200vh;
+            z-index: 3;
+        }
+    </style>
+</head>
+<body>
+    <div class="parallax-container">
+        <div class="parallax-layer" id="layer1"></div>
+        <div class="parallax-layer" id="layer2"></div>
+    </div>
+    <div class="content">
+        <h1>パララックスエフェクトのサンプル</h1>
+        <p>スクロールして遠近感を確認してください。</p>
+    </div>
+
+    <script>
+        window.addEventListener('scroll', function() {
+            const scrollTop = window.pageYOffset;
+            const layer1 = document.getElementById('layer1');
+            const layer2 = document.getElementById('layer2');
+
+            layer1.style.transform = 'translate(-50%, ' + scrollTop * 0.5 + 'px)';
+            layer2.style.transform = 'translate(-50%, ' + scrollTop * 0.3 + 'px)';
+        });
+    </script>
+</body>
+</html>
